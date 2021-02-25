@@ -1,4 +1,9 @@
-# set editing-mode vi
+set editing-mode vi
+$if Bash
+    # expand command argument shortcuts, like !:2
+    Space: magic-space
+$endif
+
 # key bindings
 "\ep": history-search-backward
 "\e[A": history-search-backward
