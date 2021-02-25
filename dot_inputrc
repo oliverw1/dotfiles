@@ -15,6 +15,8 @@ $endif
 set blink-matching-paren on
 # have tab-completion use colors
 set colored-stats On
+# colorize common prefixes
+set colored-completion-prefix on
 # allow multiline pastes to execute as one whole
 set enable-bracketed-paste On
 # autocomplete non-hidden files, unless prepended with .
@@ -26,14 +28,32 @@ set completion-query-items 30
 # key bindings
 "\e[A": history-search-backward
 "\e[B": history-search-forward
+set keymap vi-command
+"k": history-search-backward
+"j": history-search-forward
+
+set keymap vi-insert
+"\C-A": beginning-of-line
+"\C-E": end-of-line
+"\C-K": kill-line
+"yy": vi-movement-mode
+
 # macros
-Control-t: "> /tmp/a"
+Control-t: " > /tmp/a"
 Control-j: menu-complete
 Control-k: menu-complete-backward
 $if mode=vi
-set show-mode-in-prompt on
+  set show-mode-in-prompt on
 # Control+o to add an option to the previous command
-Control-o: "\e0kea "
+  Control-o: "\e0kea "
+  Control-l: clear-screen
+  # don't wait for additional input when a key is pressed.
+  # Needed for the mappings below.
+  set keyseq-timeout 0
+
+  # Does not work exactly as in emacs mode
+  "\e.": yank-last-arg
+
 $else
 Control-o: "\C-p\C-a\M-f "
 $endif
