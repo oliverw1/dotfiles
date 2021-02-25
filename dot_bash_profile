@@ -1,0 +1,8 @@
+#
+# ~/.bash_profile
+#
+
+[[ -f ~/.bashrc ]] && . ~/.bashrc
+
+# Created by `userpath` on 2021-02-12 22:51:55
+export PATH="$PATH:/home/oliver/.local/bin"

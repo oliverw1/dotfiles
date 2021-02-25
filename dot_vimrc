@@ -1,0 +1,153 @@
+set nocompatible
+
+filetype plugin indent on
+
+" Ask before unsafe actions
+set confirm
+
+set encoding=utf-8
+
+" Set <leader> key to <Space>
+
+nnoremap <SPACE> <Nop>
+let mapleader = " "
+
+" Enable easy access/reloads of vimrc
+nnoremap <leader>rc :vsplit $MYVIMRC<cr>
+nnoremap <leader>so :source $MYVIMRC<cr>
+
+" provide home-row access to esc
+inoremap kj <esc>
+
+" Stop using arrow keys - learn to stay on the home row of most keyboard
+" layouts.
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+
+" set hybrid line numbering for in-focus buffers
+set number relativenumber
+
+" Underline the line on which the cursor is
+set cursorline
+
+set tabstop=4
+set shiftwidth=4
+set expandtab
+" Disable cursor line highlighting in Insert mode
+augroup aug_cursor_line
+  au!
+  au InsertEnter * setlocal nocursorline
+  au InsertLeave * setlocal cursorline
+augroup END
+
+" Display uncompleted keystrokes in the status line
+set showcmd
+
+set hlsearch
+set incsearch
+
+nnoremap <leader><leader> :noh<cr>
+
+" Tweak autocompletion behavior for <C-n>/<C-p> in insert mode
+" Default is ".,w,b,u,t,i" without "i", where:
+" . - scan current buffer. Same to invoking <C-x><C-n> individually
+" w - buffers in other windows
+" b - loaded buffers in buffer list
+" u - unloaded buffers in buffer list
+" t - tags. Same to invoking <C-x><C-]> individually
+" i - included files. We don't need this.
+" kspell, when spell check is active, use words from spellfiles
+set complete-=i
+set complete+=kspell
+
+" Do not insert first sugggestion
+"set completeopt=menu,preview,noinsert
+
+" Timeout of user inactivity. Used to save swap file, and by vim-gitgutter plugin
+set updatetime=1000
+
+" Auto indentation
+" Preserve the same level of indentation each time we create a new line in Insert mode.
+" Also, do smart autoindenting when starting a new line.
+set autoindent
+set smartindent
+
+" Experimental. Round indent to multiple of 'shiftwidth'.
+set shiftround
+
+
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
+" Plugins
+"   Install vim-plug if not installed
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/bundle')
+Plug 'lifepillar/vim-solarized8'
+Plug 'junegunn/vim-peekaboo' " see the contents of the registers
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'janko-m/vim-test' " t<c-n>/t<c-f>
+Plug 'nathanaelkane/vim-indent-guides' " IndentGuidesToggle/<leader>ig
+Plug 'valloric/youcompleteme'
+Plug 'airblade/vim-gitgutter'
+Plug 'vim-airline/vim-airline'
+Plug 'machakann/vim-highlightedyank'
+Plug 'michaeljsmith/vim-indent-object' " ai/ii
+call plug#end()
+
+" enable indentation guides (plugin) on startup
+let g:indent_guides_enable_on_vim_startup = 1
+
+" Running tests (see vim-test)
+nmap <silent> t<C-n> :TestNearest<CR>
+nmap <silent> t<C-f> :TestFile<CR>
+nmap <silent> t<C-s> :TestSuite<CR>
+nmap <silent> t<C-l> :TestLast<CR>
+nmap <silent> t<C-g> :TestVisit<CR>
+let test#python#runner = 'pytest'
+
+
+
+" disable indentation guides
+let g:indent_guides_enable_on_vim_startup = 0
+
+" don't redraw the screen during macro execution, so it completes faster
+set lazyredraw
+
+nnoremap Q @@
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+nnoremap <c-h> <c-w>h
+
+" allow 'gf' to jump to the file README.md even if it's referred to in text as
+" "the README"
+set suffixesadd=.md
+
+" make marking lines easier when in the flow of writing
+inoremap ;1 <c-o>ma
+
+augroup pop_todo
+    autocmd!
+    au BufNewFile,BufRead *.md syntax keyword todo TODO
+augroup END
+
+
+augroup md_syntax
+    autocmd!
+    au BufNewFile,BufRead *.md inoremap ;` ```<cr><cr>```<Up><Up>
+    au BufNewFile,BufRead *.md inoremap ;c ```<cr><cr>```<Up><Up>
+augroup END
+

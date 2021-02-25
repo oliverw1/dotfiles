@@ -1,0 +1,32 @@
+[pull]
+	rebase = true
+[init]
+	defaultBranch = main
+[user]
+	email = oliver.willekens@gmail.com
+	name = Oliver Willekens
+
+[core]
+	editor = vim
+	excludesfile = ~/.gitignore.global
+
+[alias]
+	c = commit
+	d = difftool
+	s = status
+
+[diff] 
+	tool = meld
+
+[difftool] 
+	prompt = false
+
+[difftool "meld"]
+	cmd = meld "$LOCAL" "$REMOTE"
+
+[merge]
+	tool = meld
+
+[mergetool "meld"]
+	cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
+

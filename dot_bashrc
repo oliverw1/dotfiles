@@ -1,0 +1,37 @@
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+
+if [[ -f ~/.bash_aliases ]]; then
+    . ~/.bash_aliases
+fi
+if [[ -e ~/.bash_functions ]]; then
+    . ~/.bash_functions
+fi
+
+HISTTIMEFORMAT="%F %T "
+HISTCONTROL=ignoreboth
+
+# don't overwrite history file, instead append to it
+shopt -s histappend
+
+HISTSIZE=-1
+HISTFILESIZE=-1
+
+
+# bash completions
+eval "$(register-python-argcomplete pipx)"
+
+PS1='[\u@\h \W]\$ '
+
+export PATH=~/bin/:$PATH
+
+
+# DEV TOOLS
+export SDKMAN_DIR="/home/oliver/.sdkman"
+[[ -s "/home/oliver/.sdkman/bin/sdkman-init.sh" ]] && source "/home/oliver/.sdkman/bin/sdkman-init.sh"
+
+eval "$(pyenv init -)"
+
+# Created by `userpath` on 2021-02-12 22:51:55
+export PATH="$PATH:/home/oliver/.local/bin"
