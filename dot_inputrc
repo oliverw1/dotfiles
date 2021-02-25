@@ -1,0 +1,5 @@
+# set editing-mode vi
+# key bindings
+"\ep": history-search-backward
+"\e[A": history-search-backward
+"\e[B": history-search-forward
