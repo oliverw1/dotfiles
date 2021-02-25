@@ -1,10 +1,36 @@
 set editing-mode vi
+set bell-style visible
+$if term=linux
+	set vi-ins-mode-string \1\e[?0c\2
+	set vi-cmd-mode-string \1\e[?8c\2
+$else
+	set vi-ins-mode-string \1\e[6 q\2
+	set vi-cmd-mode-string \1\e[2 q\2
+$endif
+
 $if Bash
     # expand command argument shortcuts, like !:2
     Space: magic-space
 $endif
+set blink-matching-paren on
+# have tab-completion use colors
+set colored-stats On
+# allow multiline pastes to execute as one whole
+set enable-bracketed-paste On
+set completion-query-items 30
 
 # key bindings
-"\ep": history-search-backward
 "\e[A": history-search-backward
 "\e[B": history-search-forward
+# macros
+Control-t: "> /tmp/a"
+Control-j: menu-complete
+Control-k: menu-complete-backward
+$if mode=vi
+set show-mode-in-prompt on
+# Control+o to add an option to the previous command
+Control-o: "\e0kea "
+$else
+Control-o: "\C-p\C-a\M-f "
+$endif
+
