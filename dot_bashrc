@@ -1,11 +1,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-function source_if_exists() {
-    if [[ -f "$1" ]]; then
-        . "$1"
-    fi
-}
+function source_if_exists() { [[ -f "$1" ]] && . "$1" ; }
 
 source_if_exists ~/.bash_aliases
 source_if_exists ~/.bash_functions
