@@ -4,6 +4,11 @@ export EDITOR="vim"
 export VISUAL="vim"
 # export BROWSER="firefox"
 export TERMINAL="/usr/bin/alacritty"
+# less' rc file:
+# * -i: smart ignore case when searching
+# * -R: enable color output when piping colored output to less
+# * -S: truncate long lines instead of wrapping
+export LESS="iRS#8N"
 
 # used by i3blocks
 export ROFI_CONFIG_FILE="/usr/share/rofi/themes/solarized.rasi"
