@@ -1,37 +1,36 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+function source_if_exists() {
+    if [[ -f "$1" ]]; then
+        . "$1"
+    fi
+}
 
-if [[ -f ~/.bash_aliases ]]; then
-    . ~/.bash_aliases
-fi
-if [[ -e ~/.bash_functions ]]; then
-    . ~/.bash_functions
-fi
+source_if_exists ~/.bash_aliases
+source_if_exists ~/.bash_functions
 
 HISTTIMEFORMAT="%F %T "
 HISTCONTROL=ignoreboth
-
+HISTIGNORE="exit:ls"
 # don't overwrite history file, instead append to it
 shopt -s histappend
+PROMPT_COMMAND="history -a; $PROMPT_COMMAND"  # always write previous line to disk - solves last terminal overwriting history from others
 
 HISTSIZE=-1
 HISTFILESIZE=-1
 
+PS1='[\u@\h \W]\$ '
 
+########################################
+# DEV TOOLS
+########################################
 # bash completions
 eval "$(register-python-argcomplete pipx)"
 
-PS1='[\u@\h \W]\$ '
-
-export PATH=~/bin/:$PATH
-
-
-# DEV TOOLS
-export SDKMAN_DIR="/home/oliver/.sdkman"
+# note: sdkman should not be in .profile, see #568
+SDKMAN_DIR="/home/oliver/.sdkman"
 [[ -s "/home/oliver/.sdkman/bin/sdkman-init.sh" ]] && source "/home/oliver/.sdkman/bin/sdkman-init.sh"
 
-eval "$(pyenv init -)"
+unset source_if_exists
 
-# Created by `userpath` on 2021-02-12 22:51:55
-export PATH="$PATH:/home/oliver/.local/bin"
