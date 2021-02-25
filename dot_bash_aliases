@@ -1,5 +1,6 @@
 alias cg='cd `git rev-parse --show-toplevel`'
 alias cm='chezmoi'
+alias cme='chezmoi edit'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
