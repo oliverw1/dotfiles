@@ -1,6 +1,6 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
-
+export SOURCING="$SOURCING - .bashrc"
 function source_if_exists() { [[ -f "$1" ]] && . "$1" ; }
 
 source_if_exists ~/.bash_aliases
@@ -25,8 +25,7 @@ PS1='[\u@\h \W]\$ '
 eval "$(register-python-argcomplete pipx)"
 
 # note: sdkman should not be in .profile, see #568
-SDKMAN_DIR="/home/oliver/.sdkman"
-[[ -s "/home/oliver/.sdkman/bin/sdkman-init.sh" ]] && source "/home/oliver/.sdkman/bin/sdkman-init.sh"
+source_if_exists ~/.sdkman/bin/sdkman-init.sh
 
 unset source_if_exists
 
