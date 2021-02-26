@@ -1,5 +1,6 @@
-[[ -f ~/.bashrc ]] && . ~/.bashrc
+export SOURCING="$SOURCING - .bash_profile"
+function source_if_exists() { [[ -f "$1" ]] && . "$1" ; }
+source_if_exists ~/.profile
+source_if_exists ~/.bashrc
 
-PATH=~/bin/:/home/oliver/.local/bin:$PATH
-
-eval "$(pyenv init -)"
+unset source_if_exists

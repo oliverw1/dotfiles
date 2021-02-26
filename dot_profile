@@ -1,5 +1,6 @@
-[[ -f ~/.bashrc ]] && . ~/.bashrc
+PATH="${HOME}/bin/:${HOME}/.local/bin:$PATH"
 
+export SOURCING="$SOURCING - .profile"
 export EDITOR="vim"
 export VISUAL="vim"
 # export BROWSER="firefox"
@@ -12,3 +13,6 @@ export LESS="iRS#8N"
 
 # used by i3blocks
 export ROFI_CONFIG_FILE="/usr/share/rofi/themes/solarized.rasi"
+
+eval "$(pyenv init -)"
+export -f pyenv
