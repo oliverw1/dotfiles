@@ -9,6 +9,8 @@ alias l.='ll --directory .*'
 alias la='ll --almost-all'
 alias ll='ls --classify -l --human-readable'
 alias ls='ls --color=auto'
+alias md=mkdir
+alias mdp='mkdir -p'
 alias path='printf "%b\n" "${PATH//:/\\n}"'
 alias rc='$EDITOR ~/.bashrc'
 alias realias='$EDITOR ~/.bash_aliases; source ~/.bash_aliases'
