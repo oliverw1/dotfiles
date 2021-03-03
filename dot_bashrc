@@ -8,7 +8,7 @@ source_if_exists ~/.bash_functions
 
 HISTTIMEFORMAT="%F %T "
 HISTCONTROL=ignoreboth
-HISTIGNORE="exit:ls*:pwd:history*"
+HISTIGNORE="exit:pwd:history*"
 # don't overwrite history file, instead append to it
 shopt -s histappend
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"  # always write previous line to disk - solves last terminal overwriting history from others
