@@ -1,0 +1,54 @@
+" Reuse most of what you can from vimrc, even though some config will be
+" ignored.
+source ~/.vimrc
+
+" Join consecutive lines intelligently
+set ideajoin
+
+
+let mapleader = " "
+
+
+" Enable easy access/reloads of vimrc
+nnoremap <leader>rc :vsplit ~/.ideavimrc<cr>
+nnoremap <leader>so :source ~/.ideavimrc<cr>
+
+" provide home-row access to esc
+inoremap kj <esc>
+
+" Emulated Plugins
+set surround
+set commentary
+set highlightedyank
+
+" Navigation
+nmap gd :action GotoDeclaration<crgvim>
+nmap <leader>u :action FindUsages<cr>
+nmap <leader>f :action GotoFile<cr>
+
+" Refactorings
+vmap T :action Refactorings.QuickListPopupAction<cr>
+nmap <leader>rr :action RenameElement<cr>
+nmap <leader>rg :action Generate<cr>
+nmap <leader>rI :action OptimizeImports<cr>
+
+" Terminal
+nmap <leader>T :action ActivateTerminalToolWindow<cr>
+
+nmap <C-p> :action GotoFile<cr>
+nmap <C-o> :action Back<cr>
+nmap <C-i> :action Forward<cr>
+nmap g; :action JumpToLastChange<cr>
+nmap g, :action JumpToNextChange<cr>
+imap <C-v> <Esc><Action>($Paste)
+
+iab pfix @pytest.fixture<cr>def ():<Esc>^wc
+
+set ideastatusicon=disabled
+set idearefactormode=visual
+" one of select (default), keep or visual
+
+
+map <C-k> :action EditorSelectWord<cr>
+map <leader>} :action EditorCodeBlockEnd
+map <leader>{ :action EditorCodeBlockStart
