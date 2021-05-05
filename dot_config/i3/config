@@ -233,6 +233,8 @@ bindsym --release Print exec ~/bin/scrotclip
 # unicode emojis
 bindsym $mod+u exec rofimoji
 
+bindsym $mod+p exec keepassxc
+
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
@@ -245,4 +247,7 @@ bindcode $mod+Shift+114 move workspace to output right
 
 bindsym $mod+x move workspace to output up
 
-exec_always feh --bg-scale /home/oliver/Downloads/wallpapers/eng.jpg
+# Force Authy to not be overlapping
+for_window [class="Authy Desktop"] floating disable, resize set 25 ppt 25 ppt, move position 75 ppt 75 ppt
+
+exec_always feh --bg-scale /home/oliver/Downloads/wallpapers/1920_1080_full_moon_dark_mountains.jpg
