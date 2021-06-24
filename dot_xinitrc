@@ -8,15 +8,7 @@ sysmodmap=/etc/X11/xinit/.Xmodmap
 # merge in defaults and keymaps
 
 if [ -f $sysresources ]; then
-
-
-
-
-
-
-
     xrdb -merge $sysresources
-
 fi
 
 if [ -f $sysmodmap ]; then
@@ -24,15 +16,7 @@ if [ -f $sysmodmap ]; then
 fi
 
 if [ -f "$userresources" ]; then
-
-
-
-
-
-
-
     xrdb -merge "$userresources"
-
 fi
 
 if [ -f "$usermodmap" ]; then
@@ -55,8 +39,7 @@ fi
 setxkbmap \
     -model pc105 \
     -layout be,us \
-    -variant nodeadkeys, \
-    -option compose:sclk,grp:alt_shift_toggle,caps:escape \
+    -option compose:sclk,grp:ctrls_toggle,caps:escape \
     &
 
 exec i3 #xterm -geometry 80x66+0+0 -name login
