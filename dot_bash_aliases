@@ -10,6 +10,7 @@ alias l.='ll --directory .*'
 alias la='ll --almost-all'
 alias ll='ls --classify -l --human-readable'
 alias ls='ls --color=auto'
+alias man='MANWIDTH=$(( COLUMNS > 87 ? 80 : COLUMNS - 7 )) man'  # useful on big displays, but also when paging through less with the --LINE-NUMBERS option, as that steals some space
 alias md=mkdir
 alias mdp='mkdir -p'
 alias path='printf "%b\n" "${PATH//:/\\n}"'
