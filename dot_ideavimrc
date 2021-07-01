@@ -20,6 +20,7 @@ inoremap kj <esc>
 set surround
 set commentary
 set highlightedyank
+set vim-indent-object
 
 " Navigation
 nmap gd :action GotoDeclaration<crgvim>
