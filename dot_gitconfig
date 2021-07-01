@@ -1,32 +1,37 @@
 [pull]
-	rebase = true
+    rebase = true
 [init]
-	defaultBranch = main
+    defaultBranch = main
 [user]
-	email = oliver.willekens@gmail.com
-	name = Oliver Willekens
+    email = oliver.willekens@gmail.com
+    name = Oliver Willekens
 
 [core]
-	editor = vim
-	excludesfile = ~/.gitignore.global
+    editor = vim
+    excludesfile = ~/.gitignore.global
 
 [alias]
-	c = commit
-	d = difftool
-	s = status
+    ci = commit
+    co = checkout
+    d = difftool
+    ds = difftool --staged
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    p = pull
+    ps = push
+    s = status
 
 [diff] 
-	tool = meld
+    tool = meld
 
 [difftool] 
-	prompt = false
+    prompt = false
 
 [difftool "meld"]
-	cmd = meld "$LOCAL" "$REMOTE"
+    cmd = meld "$LOCAL" "$REMOTE"
 
 [merge]
-	tool = meld
+    tool = meld
 
 [mergetool "meld"]
-	cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
+    cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
 
