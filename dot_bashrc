@@ -23,9 +23,22 @@ PS1='[\u@\h \W]\$ '
 ########################################
 # bash completions
 eval "$(register-python-argcomplete pipx)"
+complete -C /usr/bin/aws_completer aws
 
 # note: sdkman should not be in .profile, see #568
 source_if_exists ~/.sdkman/bin/sdkman-init.sh
 
 unset source_if_exists
 
+shuf -n 1 $HOME/.bash_aliases
+
+
+########################################
+# Theming
+########################################
+if [ -f `which powerline-daemon` ]; then
+    powerline-daemon -q
+    POWERLINE_BASH_CONTINUATION=1
+    POWERLINE_BASH_SELECT=1
+    . /usr/share/powerline/bindings/bash/powerline.sh
+fi
