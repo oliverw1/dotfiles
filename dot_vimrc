@@ -102,7 +102,8 @@ Plug 'janko-m/vim-test' " t<c-n>/t<c-f>
 Plug 'nathanaelkane/vim-indent-guides' " IndentGuidesToggle/<leader>ig
 Plug 'valloric/youcompleteme'
 Plug 'airblade/vim-gitgutter'
-Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline'
+" Plug 'powerline/powerline'
 Plug 'machakann/vim-highlightedyank'
 Plug 'michaeljsmith/vim-indent-object' " ai/ii
 call plug#end()
@@ -150,4 +151,6 @@ augroup md_syntax
     au BufNewFile,BufRead *.md inoremap ;` ```<cr><cr>```<Up><Up>
     au BufNewFile,BufRead *.md inoremap ;c ```<cr><cr>```<Up><Up>
 augroup END
-
+set rtp+=/usr/share/powerline/bindings/vim
+" always display powerline
+set laststatus=2
