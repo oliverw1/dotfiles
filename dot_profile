@@ -6,10 +6,24 @@ export VISUAL="vim"
 # export BROWSER="firefox"
 export TERMINAL="/usr/bin/alacritty"
 # less' rc file:
-# * -i: smart ignore case when searching
-# * -R: enable color output when piping colored output to less
-# * -S: truncate long lines instead of wrapping
-export LESS="iRS#8N"
+LESS=""
+LESS+="--ignore-case "
+LESS+="--LONG-PROMPT "
+LESS+="--HILITE-UNREAD "
+LESS+="--chop-long-lines "
+LESS+="--RAW-CONTROL-CHARS "
+LESS+="--shift 8 "
+LESS+="--LINE-NUMBERS "
+LESS+="--quit-if-one-screen "
+export LESS
+
+if type lesspipe.sh >/dev/null 2>&1; then
+    export LESSOPEN='|lesspipe.sh %s'
+fi
+
+if type pygmentize >/dev/null 2>&1; then
+    export LESSCOLORIZER='pygmentize -O bg=dark'
+fi
 
 # used by i3blocks
 export ROFI_CONFIG_FILE="/usr/share/rofi/themes/solarized.rasi"
