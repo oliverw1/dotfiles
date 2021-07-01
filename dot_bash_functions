@@ -14,3 +14,41 @@ function qh() {
     # display ANSI color escape sequences in raw form ─┘│
     #       don't clear the screen after quitting less ─┘
 }
+
+function list_audio_sinks() {
+    pacmd list-sinks | grep -E 'index:|name:'
+}
+
+function switch_sink_default() {
+    echo switching default
+    pacmd set-default-sink $1 || echo failed
+}
+function switch_sink_applications() {
+  echo switching applications
+  pacmd list-sink-inputs |
+    awk '/index:/{print $2}' |
+    xargs --no-run-if-empty -I{} pacmd move-sink-input {} $1 ||
+      echo failed
+}
+
+function switch_sink() {
+  switch_sink_default      "$@"
+  switch_sink_applications "$@"
+}
+
+
+function switch_source_default() {
+    echo switching default audio source
+    pacmd set-default-source $1 || echo failed
+}
+function switch_source_applications() {
+  echo switching recording applications
+  pacmd list-source-outputs |
+    awk '/index:/{print $2}' |
+    xargs --no-run-if-empty -I{} pacmd move-source-output {} $1 ||
+      echo failed
+}
+function switch_source() {
+  switch_source_default      "$@"
+  switch_source_applications "$@"
+}
