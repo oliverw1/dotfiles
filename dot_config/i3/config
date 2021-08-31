@@ -30,7 +30,7 @@ exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
-exec_always feh --bg-scale /home/oliver/Downloads/wallpapers/1920_1080_full_moon_dark_mountains.jpg
+exec_always feh --bg-scale $HOME/Downloads/wallpapers/1920_1080_full_moon_dark_mountains.jpg
 
 ########################################
 # Window management
@@ -88,7 +88,7 @@ bindcode $mod+Shift+65 floating toggle
 bindcode $mod+65 focus mode_toggle
 
 # focus the parent container
-bindcode $mod+38 focus parent
+# bindcode $mod+38 focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -100,7 +100,7 @@ bindcode $mod+38 focus parent
 # terminals
 set $ws1 "1 " 
 # firefox
-set $ws2 "2 " 
+set $ws2 "2  "
 # development (branch)
 set $ws3 "3 " 
 # slack
@@ -147,8 +147,9 @@ bindsym $mod+Shift+Right move workspace to output right
 ########################################
 # Styling
 ########################################
-# font pango:DejaVu Sans Mono 12
-font pango:System San Francisco Display 12
+# font pango:DejaVuSansMono Nerd Font 12
+font pango: NotoSansDisplay Nerd Font 12
+# font pango:System San Francisco Display 12
 
 # thin borders
 hide_edge_borders both
@@ -176,10 +177,10 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 # finds out, if available)
 bar {
 	position top
-    font pango: System San Francisco Display 12, Font Awesome 5 Free
+    #font pango: System San Francisco Display, Font Awesome 5 Free 12
     tray_output primary
     tray_padding 0
-    status_command i3blocks -c ~/.config/i3/i3blocks.conf
+    status_command SCRIPT_DIR=~/.config/i3/scripts i3blocks -c ~/.config/i3/i3blocks.conf
 	colors {
 		background $bg-color
         separator #757575
@@ -220,7 +221,7 @@ mode "$resize_system" {
 bindsym $mod+r mode "$resize_system"
 
 # lock screen, suspend, hibernate, ...
-set $i3exit /home/oliver/.config/i3/scripts/i3exit
+set $i3exit $HOME/.config/i3/scripts/i3exit
 set $power_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$power_system" {
     bindsym l exec --no-startup-id $i3exit lock, mode "default"
@@ -282,5 +283,7 @@ bindsym $mod+m exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggl
 
 
 # Screen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10 -perceived
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10 -perceived
+bindsym $mod+F6 exec xbacklight -set 1 -perceived
+bindsym $mod+F7 exec xbacklight -set 100 -perceived
