@@ -95,10 +95,12 @@ endif
 call plug#begin('~/.vim/bundle')
 Plug 'lifepillar/vim-solarized8'
 Plug 'junegunn/vim-peekaboo' " see the contents of the registers
+Plug 'jremmen/vim-ripgrep'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-Plug 'janko-m/vim-test' " t<c-n>/t<c-f>
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'janko-m/vim-test' 
 Plug 'nathanaelkane/vim-indent-guides' " IndentGuidesToggle/<leader>ig
 Plug 'valloric/youcompleteme'
 Plug 'airblade/vim-gitgutter'
@@ -106,23 +108,30 @@ Plug 'airblade/vim-gitgutter'
 " Plug 'powerline/powerline'
 Plug 'machakann/vim-highlightedyank'
 Plug 'michaeljsmith/vim-indent-object' " ai/ii
+Plug 'ryanoasis/vim-devicons'
+" Plug 'stefandtw/quickfix-reflector' 
+" Plug tmhedberg/SimplyIFold
 call plug#end()
 
 " enable indentation guides (plugin) on startup
-let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_enable_on_vim_startup = 0
+
+if executable('rg')
+    let g:ctrlp_user_command = 'rg %s --files --hidden --color=never --glob ""'
+endif
+
+let g:rg_command = 'rg --vimgrep -S'
+
+nnoremap <Leader>b :CtrlPBuffer<CR>
 
 " Running tests (see vim-test)
-nmap <silent> t<C-n> :TestNearest<CR>
-nmap <silent> t<C-f> :TestFile<CR>
-nmap <silent> t<C-s> :TestSuite<CR>
-nmap <silent> t<C-l> :TestLast<CR>
-nmap <silent> t<C-g> :TestVisit<CR>
+nmap <silent> tn :TestNearest<CR>
+nmap <silent> tf :TestFile<CR>
+nmap <silent> ts :TestSuite<CR>
+nmap <silent> tl :TestLast<CR>
+nmap <silent> tg :TestVisit<CR>
 let test#python#runner = 'pytest'
 
-
-
-" disable indentation guides
-let g:indent_guides_enable_on_vim_startup = 0
 
 " don't redraw the screen during macro execution, so it completes faster
 set lazyredraw
