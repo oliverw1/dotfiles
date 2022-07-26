@@ -14,4 +14,4 @@ function qh() {
     # display ANSI color escape sequences in raw form ─┘│
     #       don't clear the screen after quitting less ─┘
 }
-
+function mkcd() { mkdir -p -- "$1" && cd -- "$1"; }

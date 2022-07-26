@@ -4,14 +4,25 @@ alias cme='chezmoi edit'
 alias egrep='egrep --color=auto'
 alias eog='echo "Learn to call sxiv instead"; sxiv'  # habits die hard
 alias fgrep='fgrep --color=auto'
+alias gc='git commit'
+alias gd='git difftool'
+alias gds='git difftool --staged'
+alias gco='git checkout'
+alias gcob='git checkout -b'
+alias gb='git branch --format='\''%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]'\'' --sort=-committerdate'  # sort branches by last commit date
+alias gs='git status --short --branch'
+alias gp='git pull'
+alias gps='git push origin HEAD'
 alias grep='grep --color=auto'
 alias hist='history'
+alias kc='kubectl $@'
 alias l.='ll --directory .*'
 alias la='ll --almost-all'
 alias ll='ls --classify -l --human-readable'
 alias ls='ls --color=auto'
 alias man='MANWIDTH=$(( COLUMNS > 87 ? 80 : COLUMNS - 7 )) man'  # useful on big displays, but also when paging through less with the --LINE-NUMBERS option, as that steals some space
 alias md=mkdir
+alias mdl='markdownlint'
 alias mdp='mkdir -p'
 alias path='printf "%b\n" "${PATH//:/\\n}"'
 alias rc='$EDITOR ~/.bashrc'
@@ -26,3 +37,4 @@ alias use_travel_screen='xrandr --output eDP1 --primary --auto --output DP3 --of
 alias use_yeti="use_audio yeti"
 alias va='source ./.venv/bin/activate'
 alias ve='python3 -m venv ./.venv'
+alias xclip='xclip -selection clipboard -rmlastnl'
