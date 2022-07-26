@@ -12,7 +12,10 @@ set encoding=utf-8
 nnoremap <SPACE> <Nop>
 let mapleader = " "
 
-" Enable easy access/reloads of vimrc
+" store backupfiles (foo~), swapfiles (foo.swp) and undo files (foo.un~) in non-default locations
+set backupdir=.backup/,~/.backup//,.,/tmp//
+set directory=.swp/,~/.swp//,.,/tmp//
+set undodir=.undo/,~/.undo//,.,/tmp//" Enable easy access/reloads of vimrc
 nnoremap <leader>rc :vsplit $MYVIMRC<cr>
 nnoremap <leader>so :source $MYVIMRC<cr>
 
@@ -95,6 +98,8 @@ endif
 call plug#begin('~/.vim/bundle')
 Plug 'lifepillar/vim-solarized8'
 Plug 'junegunn/vim-peekaboo' " see the contents of the registers
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'jremmen/vim-ripgrep'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
@@ -163,3 +168,64 @@ augroup END
 set rtp+=/usr/share/powerline/bindings/vim
 " always display powerline
 set laststatus=2
+
+" Let small deletes also use the numbered registers
+if exists("##TextYankPost")
+  function! SmallDeleteRing(event) abort
+    if a:event['operator'] == 'y'
+      " Don't care about actual yanks
+      return
+    endif
+    if a:event['regtype'] ==# 'V'
+      " Vim already handles linewise deletions
+      return
+    endif
+    
+    let regcontents = a:event['regcontents']
+    if len(regcontents) > 1
+      " Vim already handles deletions spanning multiple lines
+      return
+    endif
+
+    let deleted = regcontents[0]
+
+    if len(deleted) == 1
+      " Don't want to catch single-character deletions (in particular, x)
+      return
+    endif
+
+    " Grab registers 1-8
+    let one_through_eight = mapnew(range(1, 8), {k, v -> getreg(v)})
+
+    " Set register "1
+    call setreg(1, deleted)
+
+    " Set registers 2-9
+    for i in range(1, 8)
+      call setreg(i + 1, one_through_eight[i - 1])
+    endfor
+  endfunction
+
+  augroup small_delete_ring
+    autocmd!
+    autocmd TextYankPost * call SmallDeleteRing(v:event)
+  augroup END
+endif
+
+autocmd BufNewFile *.sh 0r ~/.vim/templates/bash.sh
+autocmd BufNewFile *.html 0r ~/.vim/templates/html
+
+" PLUGIN: FZF
+nnoremap <Leader>b :Buffers<CR>
+nnoremap <leader>ff :Files<cr>
+nnoremap <Leader>fg :Rg<CR>
+nnoremap <Leader>/ :BLines<CR>
+nnoremap <Leader>' :Marks<CR>
+nnoremap <Leader>g :Commits<CR>
+nnoremap <Leader>H :Helptags<CR>
+nnoremap <Leader>hh :History<CR>
+nnoremap <Leader>h: :History:<CR>
+nnoremap <Leader>h/ :History/<CR> 
+
+set grepprg=rg\ --vimgrep\ --smart-case\ --follow
+
