@@ -13,17 +13,5 @@ lessrc="${HOME}/.config/lessrc"
 # used by i3blocks
 export ROFI_CONFIG_FILE="/usr/share/rofi/themes/solarized.rasi"
 
-export NPM_PACKAGES="$HOME/.npm-packages"
-export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
-PATH="$NPM_PACKAGES/bin:$PATH"
-unset MANPATH
-MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
-
 eval "$(pyenv init -)"
 export -f pyenv
-PATH=$(pyenv root)/shims:$PATH
-
-if type rg &> /dev/null; then
-    export FZF_DEFAULT_COMMAND='rg --files'
-    export FZF_DEFAULT_OPTS='-m --height 50% --border'
-fi
