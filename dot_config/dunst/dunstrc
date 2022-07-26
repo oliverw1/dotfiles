@@ -463,4 +463,9 @@
 #    appname = "some_volume_notifiers"
 #    set_stack_tag = "volume"
 #
-# vim: ft=cfg
+[gcal-over-fullscreen]
+        desktop_entry = Firefox
+        format = "<b>%s</b>\n<i>%b</i>"
+        fullscreen = show
+        background = "#ff0000"
+        urgency = critical
