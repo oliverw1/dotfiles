@@ -22,7 +22,8 @@ esac
 
 case $(pacmd list-sources | grep -A 11 "$CURRENT_SOURCE" | awk '/muted/ {print $2; exit}') in
     yes)
-      echo "︁"
+      color=$([ $(( $(date +%s) % 4)) -ge 2 ] && echo "\n\n#ff0000" || echo "")
+      echo -e "︁${color}"
       ;;
     no)
       echo ""
