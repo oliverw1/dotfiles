@@ -16,9 +16,10 @@
     d = difftool
     ds = difftool --staged
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    lga = log --abbrev-commit --date=relative
     p = pull
     ps = push
-    s = status
+    s = status --short --branch
 
 [diff] 
     tool = meld
