@@ -1,1 +1,2 @@
-prefix=/home/oliver/.local
+prefix=${HOME}/.npm-packages
+
