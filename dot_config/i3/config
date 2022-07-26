@@ -30,7 +30,7 @@ exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
-exec_always feh --bg-scale $HOME/Downloads/wallpapers/1920_1080_full_moon_dark_mountains.jpg
+exec_always feh --bg-scale $HOME/images/wallpapers/mountains_with_lake_colorful.jpg
 
 ########################################
 # Window management
@@ -74,7 +74,7 @@ bindcode $mod+55 split v
 # azerty
 bindsym $mod+f fullscreen toggle
 # beakl
-bindsym $mod+a fullscreen toggle
+#bindsym $mod+a fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+Shift+w layout stacking
@@ -198,20 +198,21 @@ set $resize_system increase width (➡), decrease width (⬅), increase height (
 mode "$resize_system" {
         # These bindings trigger as soon as you enter the resize mode
 
+        set $window_size_adjustment 10 px or 10 ppt
         # Pressing left will shrink the window’s width.
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindcode 44 resize shrink width 10 px or 10 ppt
-        bindcode 45 resize grow height 10 px or 10 ppt
-        bindcode 46 resize shrink height 10 px or 10 ppt
-        bindcode 47 resize grow width 10 px or 10 ppt
+        bindcode 44 resize shrink width $window_size_adjustment
+        bindcode 45 resize grow height $window_size_adjustment
+        bindcode 46 resize shrink height $window_size_adjustment
+        bindcode 47 resize grow width $window_size_adjustment
 
         # same bindings, but for the arrow keys
-        bindcode 113 resize shrink width 10 px or 10 ppt
-        bindcode 116 resize grow height 10 px or 10 ppt
-        bindcode 111 resize shrink height 10 px or 10 ppt
-        bindcode 114 resize grow width 10 px or 10 ppt
+        bindcode 113 resize shrink width $window_size_adjustment
+        bindcode 116 resize grow height $window_size_adjustment
+        bindcode 111 resize shrink height $window_size_adjustment
+        bindcode 114 resize grow width $window_size_adjustment
 
         # back to normal: Enter or Escape or $mod+r
         bindcode 36 mode "default"
@@ -270,20 +271,27 @@ bindsym --release Print exec ~/bin/scrotclip
 bindsym $mod+u exec rofimoji
 
 bindsym $mod+p exec keepassxc
+
+bindsym $mod+a exec authy
 ########################################
 # Volume and brightness controls
 ########################################
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+set $set_volume pactl set-sink-volume @DEFAULT_SINK@
+set $microphone_mute pactl set-source-mute @DEFAULT_SOURCE@ toggle 
+bindsym XF86AudioRaiseVolume exec --no-startup-id $set_volume +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id $set_volume -10% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-bindsym $mod+m exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id $microphone_mute && $refresh_i3status
+bindsym $mod+m exec --no-startup-id $microphone_mute && $refresh_i3status
 
 
 # Screen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10 -perceived
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10 -perceived
-bindsym $mod+F6 exec xbacklight -set 1 -perceived
-bindsym $mod+F7 exec xbacklight -set 100 -perceived
+set $perceived_brightness xbacklight -perceived
+bindsym XF86MonBrightnessUp exec $perceived_brightness -inc 10 
+bindsym XF86MonBrightnessDown exec $perceived_brightness -dec 10 
+bindsym $mod+F6 exec $perceived_brightness -set 1 
+bindsym $mod+F7 exec $perceived_brightness -set 100 
+
+
