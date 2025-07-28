@@ -25,9 +25,14 @@ get_current_date() {
 print_month() {
   mnt=$1
   yr=$2
+  # \x1b is the hex representation of the ESC control character
+  # ESC[ is known as a Control Sequence Inducer (CSI).
+  # ESC[.....m is a control sequence known as a Select Graphic Rendition.
+  # These settings assume you did not modify the output colorization of cal
+  # as described in man cal, section COLORS.
   cal --color=always --week --$WEEK_START $mnt $yr \
     | sed -e 's/\x1b\[[7;]*m/\<b\>\<u\>/g' \
-          -e 's/\x1b\[[27;]*m/\<\/u\>\<\/b\>/g' \
+          -e 's/\x1b\[[0;]*m/\<\/u\>\<\/b\>/g' \
           -e '/^ *$/d' \
     | tail -n +2
   echo $PREV_MONTH_TEXT$'\n'$NEXT_MONTH_TEXT
@@ -124,9 +129,8 @@ case "$BLOCK_BUTTON" in
             -markup-rows \
             -font $FONT \
             -m -3 \
-            -lines $(echo $month_page | wc -l) \
-            -width -25 \
-            -theme-str '#window {anchor: '"$anchor"'; location: northwest; }' \
+            -theme-str 'window {width: 20%; anchor: '"$anchor"'; location: northwest;}' \
+            -theme-str 'listview {lines: '"$(echo $month_page | wc -l)"' ;scrollbar: false;}' \
             -theme $ROFI_CONFIG_FILE \
             -selected-row $(( current_row + bias_row )) \
             -p "$header")"
