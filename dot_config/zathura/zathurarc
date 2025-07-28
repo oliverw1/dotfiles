@@ -1,0 +1,21 @@
+include zathura-gruvbox/zathura-gruvbox-dark
+set font "NotoSansDisplay Nerd Font 12"
+
+set selection-clipboard clipboard
+set page-padding 5
+map D toggle_page_mode
+map d scroll half-down
+map u scroll half-up
+map K zoom in
+map J zoom out
+map <C-h> exec "sxiv /home/oliver/images/cheat_sheets/zathura.jpeg"
+
+# Open document in fit-width mode by default
+set adjust-open "best-fit"
+# One page per row by default
+set pages-per-row 1
+
+set show-recent 0
+
+set incremental-search true
+set database sqlite
