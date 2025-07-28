@@ -1,5 +1,7 @@
 #!/bin/sh
-echo "$BASH_SOURCE" > /tmp/boot_order.log
+
+# Started by xinit or startx if it exists. Otherwise /etc/X11/xinit/xinitrc
+echo "$BASH_SOURCE" >/tmp/boot_order.log
 
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
@@ -9,38 +11,38 @@ sysmodmap=/etc/X11/xinit/.Xmodmap
 # merge in defaults and keymaps
 
 if [ -f $sysresources ]; then
-    xrdb -merge $sysresources
+  xrdb -merge $sysresources
 fi
 
 if [ -f $sysmodmap ]; then
-    xmodmap $sysmodmap
+  xmodmap $sysmodmap
 fi
 
 if [ -f "$userresources" ]; then
-    xrdb -merge "$userresources"
+  xrdb -merge "$userresources"
 fi
 
 if [ -f "$usermodmap" ]; then
-    xmodmap "$usermodmap"
+  xmodmap "$usermodmap"
 fi
 
-# start some nice programs
-
-if [ -d /etc/X11/xinit/xinitrc.d ] ; then
- for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
-  [ -x "$f" ] && . "$f"
- done
- unset f
+# Important: comes from the xinitrc default and arch wiki says not to remove it.
+if [ -d /etc/X11/xinit/xinitrc.d ]; then
+  for f in /etc/X11/xinit/xinitrc.d/?*.sh; do
+    [ -x "$f" ] && . "$f"
+  done
+  unset f
 fi
-
 
 # Note that default settings from /etc/X11/xorg.conf.d/00-keyboard.conf
 # are loaded when the X server starts up. Keyboard settings there are
 # typically written using localectl.
 setxkbmap \
-    -model pc105 \
-    -layout be,us \
-    -option compose:sclk,grp:ctrls_toggle,caps:escape
+  -model dell101 \
+  -layout be,us \
+  -variant , \
+  -option compose:ins,grp:ctrls_toggle,caps:escape
+
 xautolock -time 10 -locker "i3lock -c #000000" -detectsleep &
 
-exec i3 
+exec i3
