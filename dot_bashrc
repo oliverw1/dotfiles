@@ -99,4 +99,4 @@ function y() {
 export _ZO_ECHO=1  # print the matching dir before jumping
 eval "$(zoxide init bash)"
 
-source '/home/oliver/.bash_completions/-c.sh'
+source ~/.bash_completions/-c.sh
