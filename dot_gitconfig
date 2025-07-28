@@ -3,11 +3,11 @@
 [init]
     defaultBranch = main
 [user]
-    email = oliver.willekens@gmail.com
+	email = 4733178+oliverw1@users.noreply.github.com
     name = Oliver Willekens
 
 [core]
-    editor = vim
+    editor = nvim
     excludesfile = ~/.gitignore.global
 
 [alias]
@@ -20,9 +20,14 @@
     p = pull
     ps = push
     s = status --short --branch
+	alias = config --get-regexp ^alias\\.
+	ap = add --patch
+	lgb = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --abbrev-commit --date=relative --branches
 
 [diff] 
     tool = meld
+	renames = copies
+	mnemonicprefix = true
 
 [difftool] 
     prompt = false
@@ -36,3 +41,7 @@
 [mergetool "meld"]
     cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
 
+[color]
+	ui = auto
+[push]
+	autoSetupRemote = true
