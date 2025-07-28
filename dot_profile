@@ -16,6 +16,7 @@ export ROFI_CONFIG_FILE="/usr/share/rofi/themes/gruvbox-dark.rasi"
 eval "$(pyenv init -)"
 export -f pyenv
 PATH=$(pyenv root)/shims:$PATH
+export JAVA_HOME="${HOME}/.sdkman/candidates/java/current"
 
 if type rg &> /dev/null; then
     export FZF_DEFAULT_COMMAND='rg --files'
