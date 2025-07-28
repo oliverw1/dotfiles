@@ -11,7 +11,7 @@ lessrc="${HOME}/.config/lessrc"
 [[ -f "${lessrc}" ]] && . "${lessrc}" 
 
 # used by i3blocks
-export ROFI_CONFIG_FILE="/usr/share/rofi/themes/solarized.rasi"
+export ROFI_CONFIG_FILE="/usr/share/rofi/themes/gruvbox-dark.rasi"
 
 eval "$(pyenv init -)"
 export -f pyenv

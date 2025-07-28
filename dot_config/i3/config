@@ -158,12 +158,18 @@ hide_edge_borders both
 for_window [class="^.*"] border pixel 1
 # new_window 1pixel
 
-set $bg-color 	         #2f343f
-set $inactive-bg-color   #2f343f
-set $text-color          #f3f4f5
-set $inactive-text-color #676E7D
-set $urgent-bg-color     #E53935
-set $indicator-color     #555588
+set $bg-color 	         #282828
+#2f343f
+set $inactive-bg-color   #282828
+#2f343f
+set $text-color          #eeeeee
+#f3f4f5
+set $inactive-text-color #444444
+#676E7D
+set $urgent-bg-color     #aa4444
+#E53935
+set $indicator-color     #282828
+#555588
 
 # window colors
 #                       border              background         text                 indicator
