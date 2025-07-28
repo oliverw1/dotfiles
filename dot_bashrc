@@ -8,7 +8,7 @@ source_if_exists ~/.bash_functions
 
 HISTTIMEFORMAT="%F %T "
 HISTCONTROL=ignoreboth
-HISTIGNORE="exit:pwd:history*"
+HISTIGNORE="exit:pwd:history*:bg:fg:ls:exit"
 # don't overwrite history file, instead append to it
 shopt -s histappend
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"  # always write previous line to disk - solves last terminal overwriting history from others
@@ -31,8 +31,45 @@ source_if_exists ~/.sdkman/bin/sdkman-init.sh
 unset source_if_exists
 
 shuf -n 1 $HOME/.bash_aliases
+echo "Alacritty Hints with ctrl+shift O (links) or Y (hex, ip)"
 
 
+pushd()
+{
+  if [ $# -eq 0 ]; then
+    DIR="${HOME}"
+  else
+    DIR="$1"
+  fi
+
+  builtin pushd "${DIR}" > /dev/null
+  echo -n "DIRSTACK: "
+  dirs
+}
+
+pushd_builtin()
+{
+  builtin pushd > /dev/null
+  echo -n "DIRSTACK: "
+  dirs
+}
+
+popd()
+{
+  builtin popd > /dev/null
+  echo -n "DIRSTACK: "
+  dirs
+}
+
+alias pd='pushd'
+alias back='popd'
+alias flip='pushd_builtin'
+
+export DOCKER_BUILDKIT=1
+export PASSWORD_STORE_CLIP_TIME=5
+export PASSWORD_STORE_GENERATED_LENGTH=50
+
+export CONVEYOR_CONTAINER_MANAGER=podman
 ########################################
 # Theming
 ########################################
@@ -42,3 +79,24 @@ if [ -f `which powerline-daemon` ]; then
     POWERLINE_BASH_SELECT=1
     . /usr/share/powerline/bindings/bash/powerline.sh
 fi
+
+# [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+# eval "$(atuin init bash)"
+#
+export LS_COLORS='ow=36:di=34:fi=32:ex=31:ln=35:'
+export COLORFGBG="15;7"
+
+# Yazi: navigate to last seen folder
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
+export _ZO_ECHO=1  # print the matching dir before jumping
+eval "$(zoxide init bash)"
+
+source '/home/oliver/.bash_completions/-c.sh'
