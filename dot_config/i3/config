@@ -247,13 +247,6 @@ bindsym $mod+Shift+p mode "$power_system"
 
 
 ########################################
-# App tweaks
-########################################
-# Force Authy to not be overlapping
-for_window [class="Authy Desktop"] floating disable, resize set 25 ppt 25 ppt, move position 75 ppt 75 ppt
-
-
-########################################
 # Window assignments
 ########################################
 assign [class="firefox"] $ws2
@@ -276,9 +269,10 @@ bindsym --release Print exec ~/bin/scrotclip
 # unicode emojis
 bindsym $mod+u exec rofimoji
 
-bindsym $mod+p exec keepassxc
+bindsym $mod+p exec rofi-pass
 
-bindsym $mod+a exec authy
+bindsym --release $mod+o exec --no-startup-id xdotool type --clearmodifiers $(pass otp luminus)
+
 ########################################
 # Volume and brightness controls
 ########################################
