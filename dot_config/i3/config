@@ -252,9 +252,14 @@ bindsym $mod+Shift+p mode "$power_system"
 ########################################
 assign [class="firefox"] $ws2
 assign [class="Slack"] $ws4
+for_window [class="Slack"] floating disable
 assign [class="Microsoft Teams - Preview"] $ws5
 assign [class="jetbrains-pycharm-ce"] $ws3
 
+# Zoom has tons of pop ups that should be floating, like PyCharm, but aren't.
+for_window [class="(.*join\?action\=join.*|.*zoom.*)"] floating enable
+for_window [class="(.*join\?action\=join.*|.*zoom.*)" title="Zoom - (Licensed|Free) Account"] floating disable
+for_window [class="(.*join\?action\=join.*|.*zoom.*)" title="(Zoom )?(Meeting|Webinar|Settings)"] floating disable
 for_window [class="drata-agent"] resize set 1880 1040, move position 20 20
 
 ########################################
