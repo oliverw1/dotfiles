@@ -149,11 +149,15 @@ bindsym $mod+Shift+Right move workspace to output right
 # Styling
 ########################################
 # font pango:DejaVuSansMono Nerd Font 12
+# font pango: BitstromWera Nerd Font 12
 font pango: NotoSansDisplay Nerd Font 12
 # font pango:System San Francisco Display 12
 
 # thin borders
 hide_edge_borders both
+default_border pixel 20
+default_floating_border pixel 2
+# default_border normal 10
 
 # disable title bars
 for_window [class="^.*"] border pixel 1
