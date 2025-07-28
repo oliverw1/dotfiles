@@ -29,6 +29,7 @@ exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
+exec --no-startup-id drata-agent
 
 exec_always feh --bg-scale $HOME/images/wallpapers/mountains_with_lake_colorful.jpg
 
@@ -253,6 +254,8 @@ assign [class="firefox"] $ws2
 assign [class="Slack"] $ws4
 assign [class="Microsoft Teams - Preview"] $ws5
 assign [class="jetbrains-pycharm-ce"] $ws3
+
+for_window [class="drata-agent"] resize set 1880 1040, move position 20 20
 
 ########################################
 # App launchers

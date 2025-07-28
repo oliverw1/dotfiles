@@ -41,5 +41,6 @@ setxkbmap \
     -model pc105 \
     -layout be,us \
     -option compose:sclk,grp:ctrls_toggle,caps:escape
+xautolock -time 10 -locker "i3lock -c #000000" -detectsleep &
 
 exec i3 
