@@ -1,40 +1,65 @@
 alias cg='cd `git rev-parse --show-toplevel`'
 alias cm='chezmoi'
 alias cme='chezmoi edit'
+alias cv=conveyor
+alias dbr='databricks'
 alias egrep='egrep --color=auto'
-alias eog='echo "Learn to call sxiv instead"; sxiv'  # habits die hard
 alias fgrep='fgrep --color=auto'
+# Smart git: just 'g' is git status. Otherwise pass args to git.
+alias g='_f() { if [[ $# == 0 ]]; then git status --short --branch; else git "$@"; fi }; _f'
+alias gb='git branch --format='\''%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]'\'' --sort=-committerdate'  # sort branches by last commit date
 alias gc='git commit'
-alias gd='git difftool'
-alias gds='git difftool --staged'
 alias gco='git checkout'
 alias gcob='git checkout -b'
 alias gb='git branch --format='\''%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]'\'' --sort=-committerdate'  # sort branches by last commit date
 alias gs='git status --short --branch'
+alias gd='git difftool'
+alias gds='git difftool --staged'
 alias gp='git pull'
 alias gps='git push origin HEAD'
+alias gr='cd $(git rev-parse --show-toplevel)'
+alias gitroot='cd $(git rev-parse --show-toplevel)'
 alias grep='grep --color=auto'
+alias gs='git status --short --branch'
 alias hist='history'
+alias ip='ip --color'
+alias k='kubectl $@'
 alias kc='kubectl $@'
+alias kn=k9s
 alias l.='ll --directory .*'
 alias la='ll --almost-all'
+alias lg='lazygit'
 alias ll='ls --classify -l --human-readable'
 alias ls='ls --color=auto'
 alias man='MANWIDTH=$(( COLUMNS > 87 ? 80 : COLUMNS - 7 )) man'  # useful on big displays, but also when paging through less with the --LINE-NUMBERS option, as that steals some space
 alias md=mkdir
 alias mdl='markdownlint'
 alias mdp='mkdir -p'
+alias myip="curl --write-out '\n' 'https://api.ipify.org?format=json'"
+alias nv=nvim
 alias path='printf "%b\n" "${PATH//:/\\n}"'
 alias rc='$EDITOR ~/.bashrc'
 alias realias='$EDITOR ~/.bash_aliases; source ~/.bash_aliases'
 alias tf='terraform'
+alias tfi='terraform init'
+alias tfp='terraform plan'
+alias tfa='terraform apply'
+alias tfaap='tfa -auto-approve'
 alias up='cd ..'
-alias use_home_screen='xrandr --output eDP1 --primary --auto --below DP3 --output DP3 --auto'
 alias use_laptop_earphones="use_audio laptop_earphones"
 alias use_laptop_mic='use_audio laptop_mic'
 alias use_laptop_speakers='use_audio laptop_speakers'
 alias use_travel_screen='xrandr --output eDP1 --primary --auto --output DP3 --off --output DP1 --off --output DP2 --off'
 alias use_yeti="use_audio yeti"
 alias va='source ./.venv/bin/activate'
+alias vd='deactivate'
 alias ve='python3 -m venv ./.venv'
+alias weather="curl 'wttr.in/halle+saale?AFq'"
 alias xclip='xclip -selection clipboard -rmlastnl'
+alias fuzz="Compose key is Insert. Try Insert with s-i-g."
+alias yt-dl='docker run \
+                  --rm -i \
+                  -e PGID=$(id -g) \
+                  -e PUID=$(id -u) \
+                  -v "$(pwd)":/workdir:rw \
+                  ghcr.io/mikenye/docker-youtube-dl:latest'
