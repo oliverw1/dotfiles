@@ -1,8 +1,8 @@
 PATH="${HOME}/bin/:${HOME}/.local/bin:$PATH"
 
 export SOURCING="$SOURCING - .profile"
-export EDITOR="vim"
-export VISUAL="vim"
+export EDITOR="nvim"
+export VISUAL="nvim"
 # export BROWSER="firefox"
 export TERMINAL="/usr/bin/alacritty"
 export PAGER="less"
