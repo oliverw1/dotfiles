@@ -15,7 +15,7 @@ alias gb='git branch --format='\''%(HEAD) %(color:yellow)%(refname:short)%(color
 alias gs='git status --short --branch'
 alias gd='git difftool'
 alias gds='git difftool --staged'
-alias gp='git pull'
+alias gp='gitpod'
 alias gps='git push origin HEAD'
 alias gr='cd $(git rev-parse --show-toplevel)'
 alias gitroot='cd $(git rev-parse --show-toplevel)'

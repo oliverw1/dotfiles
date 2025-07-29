@@ -100,3 +100,4 @@ export _ZO_ECHO=1  # print the matching dir before jumping
 eval "$(zoxide init bash)"
 
 source ~/.bash_completions/-c.sh
+source ~/.bash_completions/gitpod.sh
