@@ -15,3 +15,14 @@ function qh() {
     #       don't clear the screen after quitting less ─┘
 }
 function mkcd() { mkdir -p -- "$1" && cd -- "$1"; }
+
+function gp() {
+# Distinguish between the Gitpod workspace CLI (known as gp) and the gitpod cli
+# for non-workspaces that allow you (ao) to start new workspaces and tunnel to them.
+    if [ -n "${GITPOD_WORKSPACE_CONTEXT_URL}" ]; then 
+      # go straight to the real command (builtin or on your path), do not use bash aliases or functions
+      command gp "$@"
+    else
+      command gitpod "$@"
+    fi
+}
