@@ -37,8 +37,8 @@ alias mdp='mkdir -p'
 alias myip="curl --write-out '\n' 'https://api.ipify.org?format=json'"
 alias nv=nvim
 alias path='printf "%b\n" "${PATH//:/\\n}"'
-alias rc='$EDITOR ~/.bashrc'
-alias realias='$EDITOR ~/.bash_aliases; source ~/.bash_aliases'
+alias rc='chezmoi edit ~/.bashrc --apply'
+alias realias='chezmoi edit ~/.bash_aliases --apply; source ~/.bash_aliases'
 alias tf='terraform'
 alias tfi='terraform init'
 alias tfp='terraform plan'
