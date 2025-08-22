@@ -26,3 +26,36 @@ function gp() {
       command gitpod "$@"
     fi
 }
+
+
+function gppf() {
+# gitpod port forwarding
+
+  local ssh_command
+  local streamlit=8501
+  local browser=8080
+  local common_ports=($streamlit $browser)
+
+  ssh_command=$(ps -C ssh --format cmd --no-headers | fzf --select-1)
+
+  if [[ $? -ne 0 || -z "$ssh_command" ]]; then
+    echo "No SSH tunnel selected or found."
+    return 1
+  fi
+
+  for port in "${common_ports[@]}"; do
+    ssh_command+=" -L ${port}:127.0.0.1:${port}"
+  done
+
+  # Add user-specified port forwarding rules if they are numeric
+  for arg in "$@"; do
+    if [[ "$arg" =~ ^[0-9]+$ ]]; then
+      ssh_command+=" -L ${arg}:127.0.0.1:${arg}"
+    else
+      echo "Warning: Ignoring non-numeric argument: '$arg'" >&2
+    fi
+  done
+
+  echo "${ssh_command}"
+  eval "${ssh_command}"
+}
