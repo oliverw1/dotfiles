@@ -56,6 +56,17 @@ function gppf() {
     fi
   done
 
+  ssh_command+=" -N -f"   # no interaction & go to background
   echo "${ssh_command}"
   eval "${ssh_command}"
 }
+
+function gpstream() {
+  # Open the Streamlit application running on Gitpod
+  if gppf; then
+    xdg-open http://localhost:8501
+  else
+    echo "Failed to set up SSH port forwarding."
+  fi
+}
+
