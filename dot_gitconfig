@@ -8,7 +8,19 @@
 
 [core]
     editor = nvim
+    pager = delta
     excludesfile = ~/.gitignore.global
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true  # use n and N to move between diff sections
+    side-by-side = true
+    hyperlinks = true
+
+[merge]
+    conflictStyle = zdiff3
 
 [alias]
     ci = commit
@@ -35,13 +47,14 @@
 [difftool "meld"]
     cmd = meld "$LOCAL" "$REMOTE"
 
-[merge]
-    tool = meld
+#[merge]
+#    tool = meld
 
 [mergetool "meld"]
     cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
 
 [color]
 	ui = auto
+
 [push]
 	autoSetupRemote = true
