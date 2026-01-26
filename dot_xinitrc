@@ -3,28 +3,21 @@
 # Started by xinit or startx if it exists. Otherwise /etc/X11/xinit/xinitrc
 echo "$BASH_SOURCE" >/tmp/boot_order.log
 
-userresources=$HOME/.Xresources
-usermodmap=$HOME/.Xmodmap
-sysresources=/etc/X11/xinit/.Xresources
-sysmodmap=/etc/X11/xinit/.Xmodmap
-
 # merge in defaults and keymaps
-
-if [ -f $sysresources ]; then
-  xrdb -merge $sysresources
-fi
-
-if [ -f $sysmodmap ]; then
-  xmodmap $sysmodmap
-fi
-
-if [ -f "$userresources" ]; then
-  xrdb -merge "$userresources"
-fi
-
-if [ -f "$usermodmap" ]; then
-  xmodmap "$usermodmap"
-fi
+_load_xresources() {
+  if [ -f "$1" ]; then
+    xmodmap "$1"
+  fi
+}
+_load_xrdb_config() {
+  if [ -f "$1" ]; then
+    xrdb -merge "$1"
+  fi
+}
+_load_xrdb_config /etc/X11/xinit/.Xresources
+_load_xresources /etc/X11/xinit/.Xmodmap
+_load_xrdb_config $HOME/.Xresources
+_load_xresources $HOME/.Xmodmap
 
 # Important: comes from the xinitrc default and arch wiki says not to remove it.
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
@@ -43,6 +36,9 @@ setxkbmap \
   -variant , \
   -option compose:ins,grp:ctrls_toggle,caps:escape
 
-xautolock -time 10 -locker "i3lock -c #000000" -detectsleep &
+# Inhibit the screensaver for apps calling to freedesktop.org Indle Inhibition Service
+# Note: it forwards to the app xss!
+xssproxy &
+#xautolock -time 10 -locker "i3lock -c '#000000'" -detectsleep &
 
 exec i3
