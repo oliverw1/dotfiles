@@ -55,13 +55,12 @@ return {
             },
             formatters_by_ft = {
                 lua = { "stylua" },
-                fish = { "fish_indent" },
                 sh = { "shfmt" },
-                python = { "isort", "ruff_fix" },
+                python = { "isort", "black", "ruff_fix" },
                 javascript = { "prettierd", "prettier", stop_after_first = true },
                 markdown = { "prettier" },
                 json = { "prettier" },
-                yaml = { "prettier" },
+                yaml = { "yamlfmt" },
                 terraform = { "terraform_fmt" },
             },
             -- The options you set here will be merged with the builtin formatters.
