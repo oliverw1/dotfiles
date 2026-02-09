@@ -1,3 +1,4 @@
+alias cc=claude
 alias cg='cd `git rev-parse --show-toplevel`'
 alias cm='chezmoi'
 alias cme='chezmoi edit'
@@ -35,6 +36,7 @@ alias md=mkdir
 alias mdl='markdownlint'
 alias mdp='mkdir -p'
 alias myip="curl --write-out '\n' 'https://api.ipify.org?format=json'"
+alias nb=newsboat
 alias nv=nvim
 alias path='printf "%b\n" "${PATH//:/\\n}"'
 alias rc='chezmoi edit ~/.bashrc --apply'
