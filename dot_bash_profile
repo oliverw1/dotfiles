@@ -4,3 +4,5 @@ source_if_exists ~/.profile
 source_if_exists ~/.bashrc
 
 unset source_if_exists
+
+. "$HOME/.local/share/../bin/env"

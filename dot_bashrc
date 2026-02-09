@@ -101,3 +101,8 @@ eval "$(zoxide init bash)"
 
 source ~/.bash_completions/-c.sh
 source ~/.bash_completions/gitpod.sh
+
+. "$HOME/.local/share/../bin/env"
+
+[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+eval "$(atuin init bash)"
