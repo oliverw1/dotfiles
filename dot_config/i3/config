@@ -258,8 +258,11 @@ assign [class="firefox"] $ws2
 assign [class="Slack"] $ws4
 for_window [class="Slack"] floating disable
 assign [class="Microsoft Teams - Preview"] $ws5
-assign [class="jetbrains-pycharm-ce"] $ws3
+# Teams PWA
+assign [class="Chromium" instance="crx_cifhbcnohmdccbgoicgdjpfamggdegmo"] $ws5
+assign [class="WebApp-TeamsLuminusFF2078" instance="Navigator"] $ws5
 
+assign [class="jetbrains-pycharm-ce"] $ws3
 # Zoom has tons of pop ups that should be floating, like PyCharm, but aren't.
 for_window [class="(.*join\?action\=join.*|.*zoom.*)"] floating enable
 for_window [class="(.*join\?action\=join.*|.*zoom.*)" title="Zoom - (Licensed|Free) Account"] floating disable
