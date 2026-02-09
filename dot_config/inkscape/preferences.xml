@@ -3,7 +3,8 @@
    version="1"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
   <group
-     id="window">
+     id="window"
+     interface_mode="0">
     <group
        id="task"
        taskset="0" />
@@ -30,10 +31,10 @@
        state="1" />
     <group
        id="rulers"
-       state="1" />
+       state="0" />
     <group
        id="scrollbars"
-       state="1" />
+       state="0" />
   </group>
   <group
      id="fullscreen">
@@ -62,7 +63,7 @@
        state="1" />
     <group
        id="rulers"
-       state="1" />
+       state="0" />
     <group
        id="scrollbars"
        state="1" />
@@ -130,8 +131,8 @@
          id="rect"
          style="fill:blue;"
          usecurrent="1"
-         width="1545"
-         height="386.957334983999"
+         width="206.058215043676"
+         height="178.405410886752"
          ry="0" />
       <eventcontext
          id="3dbox"
@@ -165,18 +166,18 @@
       <eventcontext
          id="arc"
          style="fill:red;"
-         end="0"
-         start="0"
+         end="86.0703559677049"
+         start="90.9999988933412"
          usecurrent="1"
-         rx="42.0763787697619"
-         ry="34.8926069605069"
-         arc_type="0" />
+         rx="1300.87133212352"
+         ry="217.447692390502"
+         arc_type="1" />
       <eventcontext
          id="star"
-         magnitude="3"
+         magnitude="20"
          style="fill:yellow;"
          usecurrent="1"
-         proportion="0.611699970420121" />
+         proportion="0.560747497655417" />
       <eventcontext
          id="spiral"
          style="fill:none;stroke:black"
@@ -332,9 +333,9 @@
        font_sample="AaBbCcIiPpQq12369$€¢?.;/()"
        show_sample_in_list="1"
        use_svg2="1"
-       style="line-height:1.25;font-family:'Charis SIL';font-size:20px;letter-spacing:5px;-inkscape-font-specification:'Charis SIL';word-spacing:0px;text-orientation:auto"
+       style="line-height:1.25;font-family:Armelie;font-size:226.6665802px;letter-spacing:5px;-inkscape-font-specification:'Armelie, Normal';word-spacing:0px;text-orientation:auto;text-anchor:middle;text-align:center"
        selcue="0"
-       align_mode="0"
+       align_mode="1"
        writing_mode="0"
        orientation_mode="0"
        direction_mode="0" />
@@ -425,12 +426,12 @@
        unit="cm">
       <group
          id="measure-start"
-         x="971.8384"
-         y="236.32" />
+         x="402.203237088264"
+         y="312.599491728883" />
       <group
          id="measure-end"
-         x="971.8384"
-         y="283.52" />
+         x="301.941601887481"
+         y="413.447775963514" />
     </group>
     <eventcontext
        id="paintbucket"
@@ -598,7 +599,7 @@
        panel_mode="1"
        panel_ratio="100"
        panel_wrap="0"
-       palette="Inkscape default"
+       palette="/usr/share/inkscape/palettes/GNOME_HIG.gpl"
        panel_border="0">
       <group
          id="pinned"
@@ -650,7 +651,7 @@
     <group
        id="preferences"
        state="1"
-       page="48" />
+       page="24" />
     <group
        id="gradienteditor" />
     <group
@@ -663,7 +664,7 @@
        defaultopts="1">
       <group
          id="exportarea"
-         value="drawing" />
+         value="selection" />
       <group
          id="defaultxdpi"
          value="217.46" />
@@ -679,7 +680,7 @@
        default="org.inkscape.output.svg.inkscape"
        append_extension="1"
        enable_preview="0"
-       path="/home/oliver/Downloads"
+       path="/home/oliver"
        use_current_dir="1"
        enable_svgexport="0" />
     <group
@@ -707,7 +708,10 @@
        redirect="0" />
     <group
        id="clonetiler"
-       dotrace="0" />
+       dotrace="0"
+       fillrect="0"
+       jmax="1"
+       imax="6" />
     <group
        id="gridtiler"
        SpacingType="20" />
@@ -754,6 +758,26 @@
     <group
        id="attrib"
        precision="2" />
+    <group
+       id="object-properties">
+      <group
+         id="path-panel"
+         precision="2" />
+    </group>
+    <group
+       id="object-properties-widget"
+       expand-props="1"
+       expand-interactive="1" />
+    <group
+       id="printing"
+       asbitmap="0" />
+    <group
+       id="extensions-gallery">
+      <group
+         id="filters"
+         category="Distort"
+         selected="org.inkscape.effect.filter.FeltFeather" />
+    </group>
   </group>
   <group
      id="printing">
@@ -808,7 +832,7 @@
        value="4.0" />
     <group
        id="grabsize"
-       value="3" />
+       value="11" />
     <group
        id="displayprofile"
        enable="0"
@@ -841,7 +865,7 @@
        value="1.414213562" />
     <group
        id="zoomcorrection"
-       value="1.0"
+       value="1.0082"
        unit="mm" />
     <group
        id="keyscroll"
@@ -1054,7 +1078,7 @@
        colorsontop="0" />
     <group
        id="boot"
-       theme="system"
+       theme="custom"
        canvas="light">
       <group
          id="shown"
@@ -1141,17 +1165,25 @@
      org.inkscape.template.digital.width="1024.0"
      org.inkscape.template.other.size="512.0"
      org.inkscape.template.other.unit="px"
-     org.inkscape.output.pdf.cairorenderer.stretch="absolute" />
+     org.inkscape.output.pdf.cairorenderer.stretch="absolute"
+     org.inkscape.effect.filter.FeltFeather.type="in"
+     org.inkscape.effect.filter.FeltFeather.stroke="atop"
+     org.inkscape.effect.filter.FeltFeather.turbulence="fractalNoise"
+     org.inkscape.effect.filter.FeltFeather.hblur="30"
+     org.inkscape.effect.filter.FeltFeather.vblur="30"
+     org.inkscape.effect.filter.FeltFeather.dilat="5"
+     org.inkscape.effect.filter.FeltFeather.erosion="1"
+     org.inkscape.effect.filter.FeltFeather.__live_effect__="0" />
   <group
      id="desktop"
-     style="font-size:18.66666667px;-inkscape-font-specification:'Charis SIL';font-family:'Charis SIL';fill:#000000;line-height:normal;text-decoration-color:#000000;stop-color:#000000;stroke-width:37.79527559;letter-spacing:0px;word-spacing:0px;stroke-dasharray:113.38582677, 113.38582677;text-orientation:auto">
+     style="font-size:226.66666667px;-inkscape-font-specification:Armelie;font-family:Armelie;fill:#aa2a31;line-height:normal;text-decoration-color:#000000;stop-color:#000000;stroke-width:7.55905512;letter-spacing:0px;word-spacing:0px;text-orientation:auto;paint-order:fill markers stroke;text-anchor:middle;text-align:center;stroke:#27530e">
     <group
-       width="959"
-       height="1057"
-       x="960"
+       width="382"
+       height="1177"
+       x="1152"
        y="23"
        maximized="1"
-       fullscreen="0"
+       fullscreen="1"
        id="geometry" />
     <group
        id="XYfront" />
@@ -1275,7 +1307,8 @@
      menuIcons_canvas="0"
      menuIcons_layers="0"
      menuIcons_objects="0"
-     syntax-color-theme="inkscape-dark">
+     syntax-color-theme="inkscape-dark"
+     fontscale="100">
     <group
        id="multicolor"
        symbolicBaseColor="3958107135"
